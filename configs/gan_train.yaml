@@ -1,0 +1,51 @@
+exp:
+    exp_dir: experiments
+    device: cuda
+    seed: 777
+    use_wandb: True
+    model_type: gan
+
+data:
+    input_train_dir: path/to/train/dir
+    input_val_dir: path/to/validation/dir
+    train_batch_size: 8
+    val_batch_size: 8
+    workers: 8
+
+train:
+    trainer: base_gan_trainer
+    generator: base_gen
+    discriminator: base_disc
+    gen_optimizer: adam
+    disc_optimizer: adam
+    checkpoint_path: null
+    val_metrics: ["fid"]
+    start_step: 0
+    steps: 300000
+    log_step: 500
+    checkpoint_step: 15000
+    val_step: 15000
+
+
+generator_args:
+    z_dim: 32
+    hidden_dim: 512
+    blocks_num: 4
+
+discriminator_args:
+    hidden_dim: 512
+    blocks_num: 4
+
+gen_optimizer_args:
+    lr: 0.0001
+
+disc_optimizer_args:
+    lr: 0.0001
+
+gen_losses:
+    softplus_gen: 1.0
+
+disc_losses:
+    softplus_disc: 1.0
+
+

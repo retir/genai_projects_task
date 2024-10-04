@@ -1,0 +1,37 @@
+exp:
+    exp_dir: experiments
+    device: cuda
+    seed: 777
+    use_wandb: True
+    model_type: diffusion
+
+data:
+    input_train_dir: path/to/train/dir
+    input_val_dir: path/to/validation/dir
+    train_batch_size: 8
+    val_batch_size: 8
+    workers: 8
+
+train:
+    trainer: base_diffusion_trainer
+    model: base_diffusion
+    optimizer: adam
+    checkpoint_path: null
+    val_metrics: ["fid"]
+    start_step: 0
+    steps: 300000
+    log_step: 500
+    checkpoint_step: 15000
+    val_step: 15000
+
+
+model_args:
+    hidden_dim: 512
+
+optimizer_args:
+    lr: 0.0001
+
+losses_coef:
+    mse: 1.0
+
+
